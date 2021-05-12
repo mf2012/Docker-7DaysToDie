@@ -4,26 +4,26 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: 7dtdserver
+    container_name: 7d2dserver
     environment:
       - START_MODE=0 #Change between START MODES
       - VERSION=stable # Change between 7 days to die versions
-      - PUID=1000 # Remember to use same as your user
-      - PGID=1000 # Remember to use same as your user
-      - TimeZone=Europe/Madrid
+      - PUID=1004 # Remember to use same as your user
+      - PGID=1004 # Remember to use same as your user
+      - TimeZone=America/Edmonton
       - TEST_ALERT=YES
       #- ALLOC_FIXES=YES #Optional - Install ALLOC FIXES, ONLY USE WITH LATEST STABLE BUILD
     volumes:
-      - ./ServerFiles:/home/sdtdserver/serverfiles/ #Optional, serverfiles
-      - ./7DaysToDie:/home/sdtdserver/.local/share/7DaysToDie/ #Optional, maps files
-      - ./log:/home/sdtdserver/log/ #Optional, logs
-      - ./backups:/home/sdtdserver/lgsm/backup/ #Optional, backups
-      - ./LGSM-Config:/home/sdtdserver/lgsm/config-lgsm/sdtdserver # Optional, alerts
+      - /mnt/faststore/fender/games/7d2d-srv/files:/home/sdtdserver/serverfiles/ #Optional, serverfiles
+      - /mnt/faststore/fender/games/7d2d-srv/maps:/home/sdtdserver/.local/share/7DaysToDie/ #Optional, maps files
+      - /mnt/faststore/fender/games/7d2d-srv/log:/home/sdtdserver/log/ #Optional, logs
+      - /mnt/faststore/fender/games/7d2d-srv/backups:/home/sdtdserver/lgsm/backup/ #Optional, backups
+      - /mnt/faststore/fender/games/7d2d-srv/lgsm-config:/home/sdtdserver/lgsm/config-lgsm/sdtdserver # Optional, alerts
     ports:
       - 26900:26900/tcp
       - 26900:26900/udp
       - 26901:26901/udp
       - 26902:26902/udp
-      - 8080:8080/tcp #OPTIONAL WEBADMIN
-      - 8081:8081/tcp #OPTIONAL TELNET
-      - 8082:8082/tcp #OPTIONAL WEBSERVER https://7dtd.illy.bz/wiki/Server%20fixes
+      - 8080:18080/tcp #OPTIONAL WEBADMIN
+      - 8081:18081/tcp #OPTIONAL TELNET
+      - 8082:18082/tcp #OPTIONAL WEBSERVER https://7dtd.illy.bz/wiki/Server%20fixes
